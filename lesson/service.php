@@ -10,19 +10,19 @@
         }
 
         $sql = "SELECT IF(COUNT(*)> 0,'yes', 'no') as exist
-        FROM `information_schema`,`TABLES`
+        FROM `information_schema`.`TABLES`
         WHERE `TABLE_NAME` = '".$table_name ."'";
     
-        if ($result == mysqli_query($conn, $sql)){
+        if ($result = mysqli_query($conn, $sql)){
             foreach($result as $row){
-                if($row['exist'] =='yes'){
-                    echo 'ty daun? table uje was creating';
+                if($row["exist"] =='yes'){
+                    echo "ty daun? table uje was creating";
                 } else {
-                    $sql = 'CREATE TABLE ' . $table_name . '(`id` INT NOT NULL PRIMIRY KEY AUTO_INCREMENT)';
-                    if(mysqli_query($conn, $sql)){
-                        echo 'table was creating';
+                    $sql = "CREATE TABLE " . $table_name . " (`id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT)";
+                    if (mysqli_query($conn, $sql)){
+                        echo "table was creating";
                     } else{
-                        echo 'nihuya ne sozdana';
+                        echo "nihuya ne sozdana";
                     }
                 }
             }
